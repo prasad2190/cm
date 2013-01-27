@@ -18,6 +18,13 @@ end
 		puts "#{@name}#{@email}#{@phone}"
 	end
 
+	def initialize
+		name="Prasad"
+		phone_no="7709901166"
+		email_id="gawderprasad@gmail.com"
+	end
+
+
 	def name_val
 		print "Enter name"
 		name=gets().chomp!
