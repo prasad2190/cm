@@ -1,71 +1,41 @@
 require 'rubygems'
 require 'pry'
+require './blank_fill_validation'
 class Contact
 	#@name,@email,@phone
-	attr_accessor :name,:email,:phone
-=begin
-	
-rescue Exception => e
-	
-end
-	def get_value(name,email,phone)
-		@name=name
-		@email=email
-		@phone=phone
-	end
-=end
-	def display
-		puts "#{@name}#{@email}#{@phone}"
-	end
+	attr_accessor :name,:email,:phone_no
+	include BlankValidation
 
 	def initialize
-		name="Prasad"
-		phone_no="7709901166"
-		email_id="gawderprasad@gmail.com"
+		#@name="Prasad"
+		#@phone_no="7709901166"
+		#@email_id="gawderprasad@gmail.com"
 	end
-	#dfdg
+	def name_valid?
+		present?(@name) && @name.match(/^[a-zA-Z\s]*$/) ? true:false 
+	end
 
+	def phone_valid?
+		present?(@phone_no) && @phone_no.match(/[0-9+]/) && @phone_no.size==10  ? true:false
+	end
 
-	def name_val
-		print "Enter name"
-		name=gets().chomp!
-		while (name=="\n" || name.size>=18 ||(name.count("0-9")>0)==true) do 
-			print "invalid name plz enter correct name \n"
-			print "Enter Name "
-			name=gets().chomp!
-		end
+	def email_valid?
 		
-	end
-	 
-	def phone
-		print "Enter phone no"
-		phone=gets().chomp!
-		while(phone=="\n" || phone.size<=10 || (phone.count("a-z")>0)==true) do
-			print "invalid phone no plz enter correct no \n"
-			print "valid"
-			phone=gets().chomp!
+		 present?(@email) && @email.match(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/) ? true:false
+	end 
 			
-		end
-	end
-
-	def email
-		print "Enter email"
-		email=gets()
-		while (email=="\n" || email.match(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/).to_s=="") do 
-			print "invalid email plz enter correct email \n"
-			print "Enter email "
-			email=gets()
-		
-		end
-	end
-
-
-
+   def all_valid
+   	(name_valid? && phone_valid? && email_valid?) ? true:false 
+   end
 end
-c=Contact.new
-a.name_val
-a.phone
-a.email
-a.display#a.display#a.get_value("prasad","gawderprasad@gmail.com","7709901166")
-#a.display
+c=Contact.new 
+#c.name_valid?
+#c.phone_valid?
+#c.email_valid?
+#c.name="ASDF"
+#p c.name_valid?
+#c.phone_no="5467678791"
+#p c.name_valid?
+#c.email= "gawderprasad@gmail.com"
+#p c.email_valid?
 #binding.pry
