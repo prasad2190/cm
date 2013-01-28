@@ -7,4 +7,3 @@ module BlankValidation
 	end
 
 end
-#
