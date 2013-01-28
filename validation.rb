@@ -31,7 +31,7 @@ end
 c=Contact.new 
 #c.name_valid?
 #c.phone_valid?
-#c.email_valid?
+#c.email_valid?#
 #c.name="ASDF"
 #p c.name_valid?
 #c.phone_no="5467678791"
